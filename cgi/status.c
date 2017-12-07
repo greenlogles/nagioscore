@@ -1781,7 +1781,7 @@ void show_service_detail(void) {
 				printf("<td align='left'>\n");
 				printf("<table border=0 cellpadding=0 cellspacing=0>\n");
 				printf("<tr>\n");
-				printf("<td align=left valign=center class='status%s'><a href='%s?type=%d&host=%s' title='%s'>%s</a></td>\n", host_status_bg_class, EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(temp_status->host_name), temp_host->address, temp_status->host_name);
+				printf("<td align=left valign=center class='status%s'><a href='%s?type=%d&host=%s' title='%s'>%s</a></td>\n", host_status_bg_class, EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(temp_status->host_name), temp_host->address, temp_host->display_name);
 				printf("</tr>\n");
 				printf("</table>\n");
 				printf("</td>\n");
@@ -2327,7 +2327,7 @@ void show_host_detail(void) {
 			printf("<td align='left'>\n");
 			printf("<table border=0 cellpadding=0 cellspacing=0>\n");
 			printf("<tr>\n");
-			printf("<td align=left valign=center class='status%s'><a href='%s?type=%d&host=%s' title='%s'>%s</a>&nbsp;</td>\n", status_class, EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(temp_status->host_name), temp_host->address, temp_status->host_name);
+			printf("<td align=left valign=center class='status%s'><a href='%s?type=%d&host=%s' title='%s'>%s</a>&nbsp;</td>\n", status_class, EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(temp_status->host_name), temp_host->address, temp_host->display_name);
 			printf("</tr>\n");
 			printf("</table>\n");
 			printf("</td>\n");
@@ -3433,7 +3433,7 @@ void show_servicegroup_grid(servicegroup *temp_servicegroup) {
 		printf("<table border=0 cellpadding=0 cellspacing=0>\n");
 		printf("<tr>\n");
 		printf("<td align=left valign=center class='status%s'>", host_status_class);
-		printf("<a href='%s?type=%d&host=%s'>%s</a>\n", EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(temp_host->name), temp_host->name);
+		printf("<a href='%s?type=%d&host=%s'>%s</a>\n", EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(temp_host->name), temp_host->display_name);
 		printf("</td>\n");
 		printf("</tr>\n");
 		printf("</table>\n");
@@ -3789,7 +3789,7 @@ void show_servicegroup_hostgroup_member_overview(hoststatus *hststatus, int odd,
 
 	printf("<table border=0 WIDTH=100%% cellpadding=0 cellspacing=0>\n");
 	printf("<tr class='status%s'>\n", status_bg_class);
-	printf("<td class='status%s'><a href='%s?host=%s&style=detail' title='%s'>%s</a></td>\n", status_bg_class, STATUS_CGI, url_encode(hststatus->host_name), temp_host->address, hststatus->host_name);
+	printf("<td class='status%s'><a href='%s?host=%s&style=detail' title='%s'>%s</a></td>\n", status_bg_class, STATUS_CGI, url_encode(hststatus->host_name), temp_host->address, temp_host->display_name);
 
 	if(temp_host->icon_image != NULL) {
 		printf("<td class='status%s' WIDTH=5></td>\n", status_bg_class);
@@ -4674,7 +4674,7 @@ void show_hostgroup_grid(hostgroup *temp_hostgroup) {
 		printf("<table border=0 cellpadding=0 cellspacing=0>\n");
 		printf("<tr>\n");
 		printf("<td align=left valign=center class='status%s'>", host_status_class);
-		printf("<a href='%s?type=%d&host=%s'>%s</a>\n", EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(temp_host->name), temp_host->name);
+		printf("<a href='%s?type=%d&host=%s'>%s</a>\n", EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(temp_host->name), temp_host->display_name);
 		printf("</td>\n");
 		printf("</tr>\n");
 		printf("</table>\n");
@@ -4685,7 +4685,7 @@ void show_hostgroup_grid(hostgroup *temp_hostgroup) {
 
 		if(temp_host->icon_image != NULL) {
 			printf("<td align=center valign=center>");
-			printf("<a href='%s?type=%d&host=%s'>\n", EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(temp_host->name));
+			printf("<a href='%s?type=%d&host=%s'>\n", EXTINFO_CGI, DISPLAY_HOST_INFO, url_encode(temp_host->display_name));
 			printf("<IMG SRC='%s", url_logo_images_path);
 			process_macros_r(mac, temp_host->icon_image, &processed_string, 0);
 			printf("%s", processed_string);
